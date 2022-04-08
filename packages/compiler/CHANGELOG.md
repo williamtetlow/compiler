@@ -1,5 +1,13 @@
 # @astrojs/compiler
 
+## 0.14.2
+
+### Patch Changes
+
+- 13d2fc2: Fix #340, fixing behavior of content after an expression inside of <select>
+- 9e37a72: Fix issue when multiple client-only components are used
+- 59fbea2: Fix #343, edge case with <tr> inside component
+
 ## 0.14.1
 
 ### Patch Changes
