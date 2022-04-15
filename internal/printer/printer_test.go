@@ -1807,6 +1807,22 @@ const items = ["Dog", "Cat", "Platipus"];
 				},
 			},
 		},
+		{
+			name:   "comments removed from attribute list",
+			source: `<h1 {/* a comment */} value="1">Hello</h1>`,
+			want: want{
+				code: `<h1 value="1">Hello</h1>`,
+			},
+		},
+		{
+			name: "multiline comments removed from attribute list",
+			source: `<h1 {/* 
+				a comment over multiple lines
+			*/} value="1">Hello</h1>`,
+			want: want{
+				code: `<h1 value="1">Hello</h1>`,
+			},
+		},
 	}
 
 	for _, tt := range tests {

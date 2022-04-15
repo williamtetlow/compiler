@@ -152,6 +152,11 @@ type Attribute struct {
 	Type      AttributeType
 }
 
+// Comment blocks can exist in the attribute list as {/* some comment */}
+func (a *Attribute) IsComment() bool {
+	return a.Type == ShorthandAttribute && strings.HasPrefix(a.Key, "/*") && strings.HasSuffix(a.Key, "*/")
+}
+
 type Expression struct {
 	Data     string
 	Children []Token

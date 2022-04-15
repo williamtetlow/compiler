@@ -172,12 +172,14 @@ func (p *printer) printFuncSuffix(opts transform.TransformOptions) {
 func (p *printer) printAttributesToObject(n *astro.Node) {
 	p.print("{")
 	for i, a := range n.Attr {
+		if a.Key == "set:text" || a.Key == "set:html" || a.Key == "is:raw" || a.IsComment() {
+			continue
+		}
+
 		if i != 0 {
 			p.print(",")
 		}
-		if a.Key == "set:text" || a.Key == "set:html" || a.Key == "is:raw" {
-			continue
-		}
+
 		switch a.Type {
 		case astro.QuotedAttribute:
 			p.addSourceMapping(a.KeyLoc)
@@ -252,7 +254,7 @@ func (p *printer) printStyleOrScript(opts RenderOptions, n *astro.Node) {
 }
 
 func (p *printer) printAttribute(attr astro.Attribute) {
-	if attr.Key == "define:vars" || attr.Key == "set:text" || attr.Key == "set:html" || attr.Key == "is:raw" {
+	if attr.Key == "define:vars" || attr.Key == "set:text" || attr.Key == "set:html" || attr.Key == "is:raw" || attr.IsComment() {
 		return
 	}
 
