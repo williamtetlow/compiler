@@ -1,0 +1,183 @@
+{
+  "ast": {
+    "type": "root",
+    "children": [
+      {
+        "type": "frontmatter",
+        "value": "\nconst sections = [{ label: 1, items: [] }];\n",
+        "position": {
+          "start": {
+            "line": 1,
+            "column": 1,
+            "offset": 0
+          },
+          "end": {
+            "line": 4,
+            "column": 4,
+            "offset": 52
+          }
+        }
+      },
+      {
+        "type": "element",
+        "name": "div",
+        "attributes": [],
+        "children": [
+          {
+            "type": "text",
+            "value": "\n  ",
+            "position": {
+              "start": {
+                "line": 5,
+                "column": 6,
+                "offset": 58
+              }
+            }
+          },
+          {
+            "type": "expression",
+            "children": [
+              {
+                "type": "text",
+                "value": "sections.map(({ label, items }) => (\n    ",
+                "position": {
+                  "start": {
+                    "line": 6,
+                    "column": 4,
+                    "offset": 62
+                  }
+                }
+              },
+              {
+                "type": "fragment",
+                "name": "Fragment",
+                "attributes": [],
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "\n      ",
+                    "position": {
+                      "start": {
+                        "line": 7,
+                        "column": 15,
+                        "offset": 113
+                      }
+                    }
+                  },
+                  {
+                    "type": "expression",
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "label ? \"truthy\" : \"falsy\"",
+                        "position": {
+                          "start": {
+                            "line": 8,
+                            "column": 8,
+                            "offset": 121
+                          }
+                        }
+                      }
+                    ],
+                    "position": {
+                      "start": {
+                        "line": 8,
+                        "column": 7,
+                        "offset": 120
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 34,
+                        "offset": 147
+                      }
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "\n    ",
+                    "position": {
+                      "start": {
+                        "line": 8,
+                        "column": 35,
+                        "offset": 148
+                      }
+                    }
+                  }
+                ],
+                "position": {
+                  "start": {
+                    "line": 7,
+                    "column": 6,
+                    "offset": 104
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 7,
+                    "offset": 155
+                  }
+                }
+              },
+              {
+                "type": "text",
+                "value": "\n  ))",
+                "position": {
+                  "start": {
+                    "line": 9,
+                    "column": 16,
+                    "offset": 164
+                  }
+                }
+              }
+            ],
+            "position": {
+              "start": {
+                "line": 6,
+                "column": 3,
+                "offset": 61
+              },
+              "end": {
+                "line": 10,
+                "column": 5,
+                "offset": 169
+              }
+            }
+          },
+          {
+            "type": "text",
+            "value": "\n",
+            "position": {
+              "start": {
+                "line": 10,
+                "column": 6,
+                "offset": 170
+              }
+            }
+          }
+        ],
+        "position": {
+          "start": {
+            "line": 5,
+            "column": 2,
+            "offset": 54
+          },
+          "end": {
+            "line": 11,
+            "column": 3,
+            "offset": 173
+          }
+        }
+      },
+      {
+        "type": "text",
+        "value": "\n",
+        "position": {
+          "start": {
+            "line": 11,
+            "column": 7,
+            "offset": 177
+          }
+        }
+      }
+    ]
+  }
+}

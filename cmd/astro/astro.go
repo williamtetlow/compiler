@@ -6,41 +6,65 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/pkg/profile"
 	astro "github.com/withastro/compiler/internal"
 	"github.com/withastro/compiler/internal/printer"
 	"github.com/withastro/compiler/internal/transform"
 )
 
 func main() {
-	source := `
----
-import Component from '../components/Component.vue';
-export const color = 'red';
-export interface Props {
-	prop: typeof color
-}
-export const data = [{ hello: "world" }];
-
-const something = await Astro.fetchContent('../*.md');
----
-
-<html>
-  <head>
-    <title>Hello {name}</title>
-  </head>
-  <body>
-    <main>
-      <Component {...{ "client:load": false }} />
-    </main>
-	<style define:vars={{ color }}>
-		main {
-			color: var(--color);
-		}
-	</style>
-  </body>
-</html>
-`
-
+	defer profile.Start(profile.MemProfile).Stop()
+	// time.Sleep(time.Second * 10)
+	source := `---
+	import {format} from 'date-fns'; 
+	
+	// Welcome to Astro!
+	// Write JavaScript & TypeScript here, in the "component script."
+	// This will run during the build, but never in the final output.
+	// Use these variables in the HTML template below.
+	//
+	// Full Syntax:
+	// https://docs.astro.build/core-concepts/astro-components/
+	
+	const builtAt: Date = new Date();
+	const builtAtFormatted = format(builtAt, 'MMMM dd, yyyy -- H:mm:ss.SSS');
+	---
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Astro Playground</title>
+			<style>
+				header {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					text-align: center;
+					margin-top: 15vh;
+					font-family: Arial;
+				}
+				.note {
+					margin: 0;
+					padding: 1rem;
+					border-radius: 8px;
+					background: #E4E5E6;
+					border: 1px solid #BBB;
+				}
+			</style>
+		</head>
+		<body>
+			<header>
+				<img width="60" height="80" src="https://bestofjs.org/logos/astro.svg" alt="Astro logo">
+				<h1>Hello, Astro!</h1>
+				<p class="note">
+					<strong>RENDERED AT:</strong><br/>
+					{builtAtFormatted}
+				</p>
+			</header>
+		</body>
+	</html>	
+	`
+	// s := source
+	// _ = s
 	doc, err := astro.Parse(strings.NewReader(source))
 	if err != nil {
 		fmt.Println(err)

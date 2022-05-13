@@ -14,6 +14,7 @@ import (
 	"unicode"
 
 	"github.com/withastro/compiler/internal/loc"
+	"github.com/withastro/compiler/lib/esbuild/logger"
 	"golang.org/x/net/html/atom"
 )
 
@@ -839,7 +840,21 @@ func (z *Tokenizer) readCommentOrRegExp(boundaryChars []byte) {
 				return
 			}
 			if z.err == io.EOF {
-				panic("unterminated comment")
+				source := string(z.buf)
+				tracker := logger.MakeLineColumnTracker(&logger.Source{Contents: source, PrettyPath: "bla.astro"})
+				log := logger.NewStderrLog(logger.OutputOptions{
+					IncludeSource: true,
+					MessageLimit:  10,
+					Color:         0,
+					LogLevel:      2,
+				})
+
+				r := logger.Range{Loc: logger.Loc{Start: int32(z.data.Start)}, Len: int32(z.raw.End) - int32(z.data.Start)}
+				data := tracker.MsgData(r, "Unterminated comment block")
+
+				log.AddMsg(logger.Msg{Kind: logger.Error, Data: data})
+
+				panic("help")
 			}
 		}
 	// RegExp
@@ -1930,6 +1945,7 @@ func NewTokenizer(r io.Reader) *Tokenizer {
 func NewTokenizerFragment(r io.Reader, contextTag string) *Tokenizer {
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(r)
+
 	z := &Tokenizer{
 		r:                          r,
 		buf:                        buf.Bytes(),

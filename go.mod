@@ -12,4 +12,6 @@ require (
 	golang.org/x/sys v0.0.0-20210423082822-04245dca01da
 )
 
+require github.com/pkg/profile v1.6.0 // indirect
+
 replace github.com/norunners/vert => github.com/natemoo-re/vert v0.0.0-natemoo-re.8
